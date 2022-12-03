@@ -99,9 +99,9 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">native-image  --version</span><br><span class="line">GraalVM 22.3.0 Java 17 CE (Java Version 17.0.5+8-jvmci-22.3-b08)</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="3-安装或升级visual-studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系"><a href="#3-安装或升级visual-studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系" class="headerlink" title="3.安装或升级visual studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系"></a>3.安装或升级visual studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系</h2><h2 id="4-执行命令"><a href="#4-执行命令" class="headerlink" title="4.执行命令"></a>4.执行命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn -Pnative clean native:compile</span><br></pre></td></tr></table></figure>
+<h2 id="2-安装或升级visual-studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系"><a href="#2-安装或升级visual-studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系" class="headerlink" title="2.安装或升级visual studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系"></a>2.安装或升级visual studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系</h2><h2 id="3-执行命令"><a href="#3-执行命令" class="headerlink" title="3.执行命令"></a>3.执行命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn -Pnative clean native:compile</span><br></pre></td></tr></table></figure>
 <p>过程大概3min左右，期间机器很卡，CPU拉满</p>
-<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h2><p>工程代码比较简单，不做叙述。<br>总体来说aot编译之后，启动是有明显的提升，（本机）之前项目大概2s左右，native之后大概0.11s，提升还是很明显的。<br>虽然我们不能深入每一项新技术，但是新技术我还是会去体验，这次没有体现spring6的新特性，后边会深入一下。</p>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2><p>工程代码比较简单，不做叙述。<br>总体来说aot编译之后，启动是有明显的提升，（本机）之前项目大概2s左右，native之后大概0.11s，提升还是很明显的。<br>虽然我们不能深入每一项新技术，但是新技术我还是会去体验，这次没有体现spring6的新特性，后边会深入一下。</p>
 
       
     </div>
