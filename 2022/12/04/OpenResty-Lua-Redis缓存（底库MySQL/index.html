@@ -4,14 +4,22 @@
   <meta charset="utf-8">
   
   
-  <title>Dewen&#39;s Note</title>
+  <title>OpenResty Lua Redis缓存（底库MySQL) | Dewen&#39;s Note</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Dewen&#39;s Note">
-<meta property="og:url" content="https://github.com/dewen2018/index.html">
+  <meta name="description" content="openresty官网地址：http:&#x2F;&#x2F;openresty.org&#x2F;cn&#x2F;linux-packages.html#centos 0.OpenResty 安装12345678910111213# add the yum repowget https:&#x2F;&#x2F;openresty.org&#x2F;package&#x2F;centos&#x2F;openresty.reposudo mv openresty.repo &#x2F;etc&#x2F;yu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenResty Lua Redis缓存（底库MySQL)">
+<meta property="og:url" content="https://github.com/dewen2018/2022/12/04/OpenResty-Lua-Redis%E7%BC%93%E5%AD%98%EF%BC%88%E5%BA%95%E5%BA%93MySQL/index.html">
 <meta property="og:site_name" content="Dewen&#39;s Note">
+<meta property="og:description" content="openresty官网地址：http:&#x2F;&#x2F;openresty.org&#x2F;cn&#x2F;linux-packages.html#centos 0.OpenResty 安装12345678910111213# add the yum repowget https:&#x2F;&#x2F;openresty.org&#x2F;package&#x2F;centos&#x2F;openresty.reposudo mv openresty.repo &#x2F;etc&#x2F;yu">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-03T17:43:46.000Z">
+<meta property="article:modified_time" content="2022-12-03T17:45:28.239Z">
 <meta property="article:author" content="Dewen">
+<meta property="article:tag" content="lua">
+<meta property="article:tag" content="redis">
+<meta property="article:tag" content="openresty">
+<meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/dewen2018/atom.xml" title="Dewen's Note" type="application/atom+xml">
@@ -73,9 +81,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-OpenResty-Lua-Redis缓存（底库MySQL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-OpenResty-Lua-Redis缓存（底库MySQL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/dewen2018/2022/12/04/OpenResty-Lua-Redis%E7%BC%93%E5%AD%98%EF%BC%88%E5%BA%95%E5%BA%93MySQL/" class="article-date">
   <time class="dt-published" datetime="2022-12-03T17:43:46.000Z" itemprop="datePublished">2022-12-04</time>
@@ -88,8 +94,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/dewen2018/2022/12/04/OpenResty-Lua-Redis%E7%BC%93%E5%AD%98%EF%BC%88%E5%BA%95%E5%BA%93MySQL/">OpenResty Lua Redis缓存（底库MySQL)</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      OpenResty Lua Redis缓存（底库MySQL)
     </h1>
   
 
@@ -115,111 +121,19 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-springboot3-0" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/dewen2018/2022/12/03/springboot3-0/" class="article-date">
-  <time class="dt-published" datetime="2022-12-03T03:13:54.000Z" itemprop="datePublished">2022-12-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/dewen2018/2022/12/03/springboot3-0/">springboot3.0体验</a>
-    </h1>
+    <a href="/dewen2018/2022/12/03/springboot3-0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">springboot3.0体验</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="0-首先下载并安装java17"><a href="#0-首先下载并安装java17" class="headerlink" title="0.首先下载并安装java17"></a>0.首先下载并安装java17</h2><p>graalvm-ee-java17-windows-amd64-22.3.0.zip<br>配置环境变量，及mvn环境变量，要求java -version 和 mvn -v出来的java版本一直<br>mvn java version的配置：文件位置在%MAVEN_HOME%\bin\mvn.cmd<br>    set JAVA_HOME&#x3D;D:\Programs\Java\graalvm-ee-java17-22.3.0</p>
-<h2 id="1-安装native-image"><a href="#1-安装native-image" class="headerlink" title="1.安装native-image"></a>1.安装native-image</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gu install -L native-image-installable-svm-java17-windows-amd64-22.3.0</span><br></pre></td></tr></table></figure>
-<p>验证</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">native-image  --version</span><br><span class="line">GraalVM 22.3.0 Java 17 CE (Java Version 17.0.5+8-jvmci-22.3-b08)</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="2-安装或升级visual-studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系"><a href="#2-安装或升级visual-studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系" class="headerlink" title="2.安装或升级visual studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系"></a>2.安装或升级visual studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系</h2><h2 id="3-执行命令"><a href="#3-执行命令" class="headerlink" title="3.执行命令"></a>3.执行命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn -Pnative clean native:compile</span><br></pre></td></tr></table></figure>
-<p>过程大概3min左右，期间机器很卡，CPU拉满</p>
-<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2><p>工程代码比较简单，<a href="https://github.com/dewen2018/springboot-study/tree/main/47edition3exp">在github查看</a>，这里不展开叙述。<br>总体来说aot编译之后，启动是有明显的提升，（本机）之前项目大概2s左右，native之后大概0.11s，提升还是很明显的。<br>虽然我们不能深入每一项新技术，但是新技术我还是会去体验，这次没有体现spring6的新特性，后边会深入一下。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/dewen2018/2022/12/03/springboot3-0/" data-id="clb7d7frw0000687k82mddqrj" data-title="springboot3.0体验" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/dewen2018/tags/graalvm/" rel="tag">graalvm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/dewen2018/tags/springboot/" rel="tag">springboot</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/dewen2018/2022/06/21/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2022-06-21T14:06:39.093Z" itemprop="datePublished">2022-06-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/dewen2018/2022/06/21/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">or </span><br><span class="line">$ hexo n <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files生成静态页面"><a href="#Generate-static-files生成静态页面" class="headerlink" title="Generate static files生成静态页面"></a>Generate static files生成静态页面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy部署</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="清理已生成的静态页面"><a href="#清理已生成的静态页面" class="headerlink" title="清理已生成的静态页面"></a>清理已生成的静态页面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/dewen2018/2022/06/21/hello-world/" data-id="cl4o9bhln0000zs7k2nfneh81" data-title="Hello World" class="article-share-link">分享</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
 </section>

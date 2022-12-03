@@ -9,10 +9,10 @@
   <meta name="description" content="0.首先下载并安装java17graalvm-ee-java17-windows-amd64-22.3.0.zip配置环境变量，及mvn环境变量，要求java -version 和 mvn -v出来的java版本一直mvn java version的配置：文件位置在%MAVEN_HOME%\bin\mvn.cmd    set JAVA_HOME&#x3D;D:\Programs\Java\gra">
 <meta property="og:type" content="article">
 <meta property="og:title" content="springboot3.0体验">
-<meta property="og:url" content="http://example.com/2022/12/03/springboot3-0/index.html">
+<meta property="og:url" content="https://github.com/dewen2018/2022/12/03/springboot3-0/index.html">
 <meta property="og:site_name" content="Dewen&#39;s Note">
 <meta property="og:description" content="0.首先下载并安装java17graalvm-ee-java17-windows-amd64-22.3.0.zip配置环境变量，及mvn环境变量，要求java -version 和 mvn -v出来的java版本一直mvn java version的配置：文件位置在%MAVEN_HOME%\bin\mvn.cmd    set JAVA_HOME&#x3D;D:\Programs\Java\gra">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-03T03:13:54.000Z">
 <meta property="article:modified_time" content="2022-12-03T06:17:01.353Z">
 <meta property="article:author" content="Dewen">
@@ -20,10 +20,10 @@
 <meta property="article:tag" content="graalvm">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Dewen's Note" type="application/atom+xml">
+    <link rel="alternate" href="/dewen2018/atom.xml" title="Dewen's Note" type="application/atom+xml">
   
   
-    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="shortcut icon" href="/dewen2018/favicon.png">
   
   
     
@@ -31,11 +31,11 @@
 
   
   
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/dewen2018/css/style.css">
 
   
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+<link rel="stylesheet" href="/dewen2018/fancybox/jquery.fancybox.min.css">
 
   
 <meta name="generator" content="Hexo 6.2.0"></head>
@@ -48,27 +48,31 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Dewen&#39;s Note</a>
+        <a href="/dewen2018/" id="logo">Dewen&#39;s Note</a>
       </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/dewen2018/" id="subtitle">分享个人对技术的理解</a>
+        </h2>
       
     </div>
     <div id="header-inner" class="inner">
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/dewen2018/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/dewen2018/archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/dewen2018/atom.xml" title="RSS 订阅"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/dewen2018"></form>
       </div>
     </div>
   </div>
@@ -77,7 +81,7 @@
       <div class="outer">
         <section id="main"><article id="post-springboot3-0" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/12/03/springboot3-0/" class="article-date">
+    <a href="/dewen2018/2022/12/03/springboot3-0/" class="article-date">
   <time class="dt-published" datetime="2022-12-03T03:13:54.000Z" itemprop="datePublished">2022-12-03</time>
 </a>
     
@@ -105,16 +109,16 @@
 
 <h2 id="2-安装或升级visual-studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系"><a href="#2-安装或升级visual-studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系" class="headerlink" title="2.安装或升级visual studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系"></a>2.安装或升级visual studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系</h2><h2 id="3-执行命令"><a href="#3-执行命令" class="headerlink" title="3.执行命令"></a>3.执行命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn -Pnative clean native:compile</span><br></pre></td></tr></table></figure>
 <p>过程大概3min左右，期间机器很卡，CPU拉满</p>
-<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2><p>工程代码比较简单，<a target="_blank" rel="noopener" href="https://github.com/dewen2018/springboot-study/tree/main/47edition3exp">在github查看</a>，这里不展开叙述。<br>总体来说aot编译之后，启动是有明显的提升，（本机）之前项目大概2s左右，native之后大概0.11s，提升还是很明显的。<br>虽然我们不能深入每一项新技术，但是新技术我还是会去体验，这次没有体现spring6的新特性，后边会深入一下。</p>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2><p>工程代码比较简单，<a href="https://github.com/dewen2018/springboot-study/tree/main/47edition3exp">在github查看</a>，这里不展开叙述。<br>总体来说aot编译之后，启动是有明显的提升，（本机）之前项目大概2s左右，native之后大概0.11s，提升还是很明显的。<br>虽然我们不能深入每一项新技术，但是新技术我还是会去体验，这次没有体现spring6的新特性，后边会深入一下。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/12/03/springboot3-0/" data-id="clb7d7frw0000687k82mddqrj" data-title="springboot3.0体验" class="article-share-link">Share</a>
+      <a data-url="https://github.com/dewen2018/2022/12/03/springboot3-0/" data-id="clb7d7frw0000687k82mddqrj" data-title="springboot3.0体验" class="article-share-link">分享</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/graalvm/" rel="tag">graalvm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/dewen2018/tags/graalvm/" rel="tag">graalvm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/dewen2018/tags/springboot/" rel="tag">springboot</a></li></ul>
 
     </footer>
   </div>
@@ -122,9 +126,18 @@
     
 <nav id="article-nav">
   
+    <a href="/dewen2018/2022/12/04/OpenResty-Lua-Redis%E7%BC%93%E5%AD%98%EF%BC%88%E5%BA%95%E5%BA%93MySQL/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          OpenResty Lua Redis缓存（底库MySQL)
+        
+      </div>
+    </a>
   
-    <a href="/2022/06/21/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+  
+    <a href="/dewen2018/2022/06/21/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
       <div class="article-nav-title">Hello World</div>
     </a>
   
@@ -143,9 +156,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/graalvm/" rel="tag">graalvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/dewen2018/tags/graalvm/" rel="tag">graalvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/dewen2018/tags/lua/" rel="tag">lua</a></li><li class="tag-list-item"><a class="tag-list-link" href="/dewen2018/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/dewen2018/tags/openresty/" rel="tag">openresty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/dewen2018/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/dewen2018/tags/springboot/" rel="tag">springboot</a></li></ul>
     </div>
   </div>
 
@@ -153,18 +166,18 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/graalvm/" style="font-size: 10px;">graalvm</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a>
+      <a href="/dewen2018/tags/graalvm/" style="font-size: 10px;">graalvm</a> <a href="/dewen2018/tags/lua/" style="font-size: 10px;">lua</a> <a href="/dewen2018/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/dewen2018/tags/openresty/" style="font-size: 10px;">openresty</a> <a href="/dewen2018/tags/redis/" style="font-size: 10px;">redis</a> <a href="/dewen2018/tags/springboot/" style="font-size: 10px;">springboot</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/dewen2018/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/dewen2018/archives/2022/06/">六月 2022</a></li></ul>
     </div>
   </div>
 
@@ -172,16 +185,20 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2022/12/03/springboot3-0/">springboot3.0体验</a>
+            <a href="/dewen2018/2022/12/04/OpenResty-Lua-Redis%E7%BC%93%E5%AD%98%EF%BC%88%E5%BA%95%E5%BA%93MySQL/">OpenResty Lua Redis缓存（底库MySQL)</a>
           </li>
         
           <li>
-            <a href="/2022/06/21/hello-world/">Hello World</a>
+            <a href="/dewen2018/2022/12/03/springboot3-0/">springboot3.0体验</a>
+          </li>
+        
+          <li>
+            <a href="/dewen2018/2022/06/21/hello-world/">Hello World</a>
           </li>
         
       </ul>
@@ -206,25 +223,25 @@
     </div>
     <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/dewen2018/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/dewen2018/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     
 
 
-<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/dewen2018/js/jquery-3.4.1.min.js"></script>
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+<script src="/dewen2018/fancybox/jquery.fancybox.min.js"></script>
 
 
 
 
-<script src="/js/script.js"></script>
+<script src="/dewen2018/js/script.js"></script>
 
 
 
