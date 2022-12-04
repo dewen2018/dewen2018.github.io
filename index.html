@@ -8,16 +8,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Dewen&#39;s Note">
-<meta property="og:url" content="https://github.com/dewen2018/index.html">
+<meta property="og:url" content="https://dewen2018.github.io/index.html">
 <meta property="og:site_name" content="Dewen&#39;s Note">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Dewen">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/dewen2018/atom.xml" title="Dewen's Note" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Dewen's Note" type="application/atom+xml">
   
   
-    <link rel="shortcut icon" href="/dewen2018/favicon.png">
+    <link rel="shortcut icon" href="/favicon.png">
   
   
     
@@ -25,11 +25,11 @@
 
   
   
-<link rel="stylesheet" href="/dewen2018/css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
   
     
-<link rel="stylesheet" href="/dewen2018/fancybox/jquery.fancybox.min.css">
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
   
 <meta name="generator" content="Hexo 6.2.0"></head>
@@ -42,11 +42,11 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/dewen2018/" id="logo">Dewen&#39;s Note</a>
+        <a href="/" id="logo">Dewen&#39;s Note</a>
       </h1>
       
         <h2 id="subtitle-wrap">
-          <a href="/dewen2018/" id="subtitle">分享个人对技术的理解</a>
+          <a href="/" id="subtitle">分享个人对技术的理解</a>
         </h2>
       
     </div>
@@ -54,19 +54,19 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/dewen2018/">Home</a>
+          <a class="main-nav-link" href="/">Home</a>
         
-          <a class="main-nav-link" href="/dewen2018/archives">Archives</a>
+          <a class="main-nav-link" href="/archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/dewen2018/atom.xml" title="RSS 订阅"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
         
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/dewen2018"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://dewen2018.github.io"></form>
       </div>
     </div>
   </div>
@@ -77,7 +77,7 @@
   
     <article id="post-springboot3-0" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/dewen2018/2022/12/03/springboot3-0/" class="article-date">
+    <a href="/2022/12/03/springboot3-0/" class="article-date">
   <time class="dt-published" datetime="2022-12-03T03:13:54.000Z" itemprop="datePublished">2022-12-03</time>
 </a>
     
@@ -89,7 +89,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/dewen2018/2022/12/03/springboot3-0/">springboot3.0体验</a>
+      <a class="p-name article-title" href="/2022/12/03/springboot3-0/">springboot3.0体验</a>
     </h1>
   
 
@@ -105,16 +105,16 @@
 
 <h2 id="2-安装或升级visual-studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系"><a href="#2-安装或升级visual-studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系" class="headerlink" title="2.安装或升级visual studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系"></a>2.安装或升级visual studio，因为要用到c的环境，我是装的早用的2017，网上一些教程用的是2019，这个没关系</h2><h2 id="3-执行命令"><a href="#3-执行命令" class="headerlink" title="3.执行命令"></a>3.执行命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn -Pnative clean native:compile</span><br></pre></td></tr></table></figure>
 <p>过程大概3min左右，期间机器很卡，CPU拉满</p>
-<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2><p>工程代码比较简单，<a href="https://github.com/dewen2018/springboot-study/tree/main/47edition3exp">在github查看</a>，这里不展开叙述。<br>总体来说aot编译之后，启动是有明显的提升，（本机）之前项目大概2s左右，native之后大概0.11s，提升还是很明显的。<br>虽然我们不能深入每一项新技术，但是新技术我还是会去体验，这次没有体现spring6的新特性，后边会深入一下。</p>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2><p>工程代码比较简单，<a target="_blank" rel="noopener" href="https://github.com/dewen2018/springboot-study/tree/main/47edition3exp">在github查看</a>，这里不展开叙述。<br>总体来说aot编译之后，启动是有明显的提升，（本机）之前项目大概2s左右，native之后大概0.11s，提升还是很明显的。<br>虽然我们不能深入每一项新技术，但是新技术我还是会去体验，这次没有体现spring6的新特性，后边会深入一下。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/dewen2018/2022/12/03/springboot3-0/" data-id="clb8v562u00012g7k4coa35c7" data-title="springboot3.0体验" class="article-share-link">分享</a>
+      <a data-url="https://dewen2018.github.io/2022/12/03/springboot3-0/" data-id="clb8v562u00012g7k4coa35c7" data-title="springboot3.0体验" class="article-share-link">分享</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/dewen2018/tags/graalvm/" rel="tag">graalvm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/dewen2018/tags/springboot/" rel="tag">springboot</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/graalvm/" rel="tag">graalvm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li></ul>
 
     </footer>
   </div>
@@ -126,7 +126,7 @@
   
     <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/dewen2018/2022/06/21/hello-world/" class="article-date">
+    <a href="/2022/06/21/hello-world/" class="article-date">
   <time class="dt-published" datetime="2022-06-21T14:06:39.093Z" itemprop="datePublished">2022-06-21</time>
 </a>
     
@@ -138,7 +138,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/dewen2018/2022/06/21/hello-world/">Hello World</a>
+      <a class="p-name article-title" href="/2022/06/21/hello-world/">Hello World</a>
     </h1>
   
 
@@ -146,7 +146,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">or </span><br><span class="line">$ hexo n <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
@@ -163,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/dewen2018/2022/06/21/hello-world/" data-id="clb8v562b00002g7kfx2e499v" data-title="Hello World" class="article-share-link">分享</a>
+      <a data-url="https://dewen2018.github.io/2022/06/21/hello-world/" data-id="clb8v562b00002g7kfx2e499v" data-title="Hello World" class="article-share-link">分享</a>
       
       
       
@@ -188,7 +188,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/dewen2018/tags/graalvm/" rel="tag">graalvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/dewen2018/tags/springboot/" rel="tag">springboot</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/graalvm/" rel="tag">graalvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li></ul>
     </div>
   </div>
 
@@ -198,7 +198,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/dewen2018/tags/graalvm/" style="font-size: 10px;">graalvm</a> <a href="/dewen2018/tags/springboot/" style="font-size: 10px;">springboot</a>
+      <a href="/tags/graalvm/" style="font-size: 10px;">graalvm</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a>
     </div>
   </div>
 
@@ -207,7 +207,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/dewen2018/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/dewen2018/archives/2022/06/">六月 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li></ul>
     </div>
   </div>
 
@@ -220,11 +220,11 @@
       <ul>
         
           <li>
-            <a href="/dewen2018/2022/12/03/springboot3-0/">springboot3.0体验</a>
+            <a href="/2022/12/03/springboot3-0/">springboot3.0体验</a>
           </li>
         
           <li>
-            <a href="/dewen2018/2022/06/21/hello-world/">Hello World</a>
+            <a href="/2022/06/21/hello-world/">Hello World</a>
           </li>
         
       </ul>
@@ -249,25 +249,25 @@
     </div>
     <nav id="mobile-nav">
   
-    <a href="/dewen2018/" class="mobile-nav-link">Home</a>
+    <a href="/" class="mobile-nav-link">Home</a>
   
-    <a href="/dewen2018/archives" class="mobile-nav-link">Archives</a>
+    <a href="/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     
 
 
-<script src="/dewen2018/js/jquery-3.4.1.min.js"></script>
+<script src="/js/jquery-3.4.1.min.js"></script>
 
 
 
   
-<script src="/dewen2018/fancybox/jquery.fancybox.min.js"></script>
+<script src="/fancybox/jquery.fancybox.min.js"></script>
 
 
 
 
-<script src="/dewen2018/js/script.js"></script>
+<script src="/js/script.js"></script>
 
 
 
