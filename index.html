@@ -75,51 +75,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-OpenResty-Lua-Redis缓存（底库MySQL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/dewen2018/2022/12/04/OpenResty-Lua-Redis%E7%BC%93%E5%AD%98%EF%BC%88%E5%BA%95%E5%BA%93MySQL/" class="article-date">
-  <time class="dt-published" datetime="2022-12-03T17:43:46.000Z" itemprop="datePublished">2022-12-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/dewen2018/2022/12/04/OpenResty-Lua-Redis%E7%BC%93%E5%AD%98%EF%BC%88%E5%BA%95%E5%BA%93MySQL/">OpenResty Lua Redis缓存（底库MySQL)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>openresty官网地址：<a target="_blank" rel="noopener" href="http://openresty.org/cn/linux-packages.html#centos">http://openresty.org/cn/linux-packages.html#centos</a></p>
-<h2 id="0-OpenResty-安装"><a href="#0-OpenResty-安装" class="headerlink" title="0.OpenResty 安装"></a>0.OpenResty 安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># add the yum repo</span></span><br><span class="line">wget https://openresty.org/package/centos/openresty.repo</span><br><span class="line">sudo <span class="built_in">mv</span> openresty.repo /etc/yum.repos.d/</span><br><span class="line"><span class="comment"># update the yum index</span></span><br><span class="line">sudo yum check-update</span><br><span class="line"><span class="comment"># install</span></span><br><span class="line">sudo yum install -y openresty</span><br><span class="line">opm是OpenResty的一个管理工具，可以帮助我们安装一个第三方的Lua模块</span><br><span class="line">sudo yum install -y openresty-opm</span><br><span class="line"><span class="comment"># verfy</span></span><br><span class="line">openresty -v</span><br><span class="line">nginx version: openresty/1.21.4.1</span><br><span class="line">安装目录：/usr/local/openresty</span><br></pre></td></tr></table></figure>
-<h2 id="1-配置NG"><a href="#1-配置NG" class="headerlink" title="1.配置NG"></a>1.配置NG</h2><h3 id="1-1环境配置"><a href="#1-1环境配置" class="headerlink" title="1.1环境配置"></a>1.1环境配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> NGINX_HOME=/usr/local/openresty/nginx</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$&#123;NGINX_HOME&#125;</span>/sbin:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line">nginx</span><br><span class="line">nginx -s stop</span><br><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
-<h3 id="1-2nginx-cong配置"><a href="#1-2nginx-cong配置" class="headerlink" title="1.2nginx.cong配置"></a>1.2nginx.cong配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.防止执行的时候没有权限</span><br><span class="line">user  root root;</span><br><span class="line">2.共享缓存及大小</span><br><span class="line">lua_code_cache on;</span><br><span class="line">lua_shared_dict cache 128m;</span><br><span class="line">lua_shared_dict cache_locks 100k;</span><br><span class="line">3.路由</span><br><span class="line">location /read_content &#123;</span><br><span class="line">    content_by_lua_file /usr/local/openresty/lualib/read_content.lua;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-编写lua脚本"><a href="#2-编写lua脚本" class="headerlink" title="2.编写lua脚本"></a>2.编写lua脚本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">ngx.header.content_type=<span class="string">&quot;application/json;charset=utf8&quot;</span></span><br><span class="line"><span class="built_in">local</span> uri_args = ngx.req.get_uri_args();</span><br><span class="line"><span class="built_in">local</span> <span class="built_in">id</span> = uri_args[<span class="string">&quot;id&quot;</span>];</span><br><span class="line">-- 加载nginx缓存模块</span><br><span class="line">-- <span class="built_in">local</span> cache_ngx = ngx.shared.dis_cache;</span><br><span class="line"><span class="built_in">local</span> cache_ngx = ngx.shared.cache;</span><br><span class="line">-- 根据ID获取本地缓存数据</span><br><span class="line"><span class="built_in">local</span> contentCache = cache_ngx:get(<span class="string">&#x27;content_cache_&#x27;</span>..<span class="built_in">id</span>);</span><br><span class="line"> </span><br><span class="line">-- 获取IP信息，可删除</span><br><span class="line">-- [[</span><br><span class="line">-- <span class="built_in">local</span> headers=ngx.header;</span><br><span class="line">-- <span class="built_in">local</span> ip=headers[<span class="string">&quot;X-REAL-IP&quot;</span>] or headers[<span class="string">&quot;X_FORWARDED_FOR&quot;</span>] or ngx.var.remote_addr or <span class="string">&quot;0.0.0.0&quot;</span></span><br><span class="line">-- ngx.say(ip)</span><br><span class="line">-- ngx.say(contentCache)</span><br><span class="line">-- ]]</span><br><span class="line"> </span><br><span class="line">-- 若nginx中没有相应的缓存信息</span><br><span class="line"><span class="keyword">if</span> contentCache == <span class="string">&quot;&quot;</span> or contentCache == nil <span class="keyword">then</span></span><br><span class="line">    -- 加载redis模块</span><br><span class="line">    <span class="built_in">local</span> redis = require(<span class="string">&quot;resty.redis&quot;</span>);</span><br><span class="line">    <span class="built_in">local</span> red = redis:new()</span><br><span class="line">    red:set_timeout(2000)</span><br><span class="line">    <span class="built_in">local</span> ok, err = red:connect(<span class="string">&quot;192.168.0.104&quot;</span>, 6379)</span><br><span class="line">	ok, err = red:auth(<span class="string">&quot;pwd&quot;</span>)</span><br><span class="line">	<span class="keyword">if</span> not ok <span class="keyword">then</span></span><br><span class="line">		ngx.log(ngx.DEBUG, <span class="string">&quot;error:&quot;</span> .. err);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">local</span> rescontent = red:get(<span class="string">&quot;content_&quot;</span>..<span class="built_in">id</span>);</span><br><span class="line"> </span><br><span class="line">		-- 若redis模块也没有这个信息</span><br><span class="line">		<span class="keyword">if</span> ngx.null == rescontent <span class="keyword">then</span></span><br><span class="line">			-- 从数据库中获取数据</span><br><span class="line">			<span class="built_in">local</span> cjson = require(<span class="string">&quot;cjson&quot;</span>);</span><br><span class="line">			<span class="built_in">local</span> mysql = require(<span class="string">&quot;resty.mysql&quot;</span>);</span><br><span class="line">			<span class="built_in">local</span> db = mysql:new();</span><br><span class="line">			db:set_timeout(2000)</span><br><span class="line">			<span class="built_in">local</span> props = &#123;</span><br><span class="line">				host = <span class="string">&quot;192.168.0.104&quot;</span>,</span><br><span class="line">				port = 3307,</span><br><span class="line">				database = <span class="string">&quot;dewen_anything&quot;</span>,</span><br><span class="line">				user = <span class="string">&quot;root&quot;</span>,</span><br><span class="line">				password = <span class="string">&quot;root&quot;</span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">local</span> res = db:connect(props);</span><br><span class="line">			<span class="built_in">local</span> select_sql = <span class="string">&quot;select * from user where id = &quot;</span>..<span class="built_in">id</span>..<span class="string">&quot; &quot;</span>;</span><br><span class="line">			res = db:query(select_sql);</span><br><span class="line">			<span class="built_in">local</span> responsejson = cjson.encode(res);</span><br><span class="line">			-- 存储到redis中</span><br><span class="line">			red:<span class="built_in">set</span>(<span class="string">&quot;content_&quot;</span>..<span class="built_in">id</span>,responsejson);</span><br><span class="line">			ngx.say(responsejson);</span><br><span class="line">			db:close()</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			-- 若redis中有缓存，设置的到nginx缓存中, 2*60 表示设置 nginx 缓存时间为10min</span><br><span class="line">			cache_ngx:<span class="built_in">set</span>(<span class="string">&#x27;content_cache_&#x27;</span>..<span class="built_in">id</span>, rescontent, 10*60);</span><br><span class="line">			ngx.say(rescontent)</span><br><span class="line">		end</span><br><span class="line">		red:close()</span><br><span class="line">	end</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">-- 若nginx中有对应的信息，则返回</span><br><span class="line">    ngx.say(contentCache)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<h2 id="3-坑点"><a href="#3-坑点" class="headerlink" title="3.坑点"></a>3.坑点</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">加载nginx缓存模块的时候我这个版本用第一个死活报错，折腾了近两个小时，期间各种抓狂。</span><br><span class="line">ngx.shared.dis_cache;</span><br><span class="line">ngx.shared.cache;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/dewen2018/2022/12/04/OpenResty-Lua-Redis%E7%BC%93%E5%AD%98%EF%BC%88%E5%BA%95%E5%BA%93MySQL/" data-id="clb8v45ur0000rw7kev8uas7r" data-title="OpenResty Lua Redis缓存（底库MySQL)" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/dewen2018/tags/lua/" rel="tag">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/dewen2018/tags/nginx/" rel="tag">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/dewen2018/tags/openresty/" rel="tag">openresty</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/dewen2018/tags/redis/" rel="tag">redis</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
     <article id="post-springboot3-0" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/dewen2018/2022/12/03/springboot3-0/" class="article-date">
@@ -155,7 +110,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/dewen2018/2022/12/03/springboot3-0/" data-id="clb8v45v90001rw7k3vopbbub" data-title="springboot3.0体验" class="article-share-link">分享</a>
+      <a data-url="https://github.com/dewen2018/2022/12/03/springboot3-0/" data-id="clb8v562u00012g7k4coa35c7" data-title="springboot3.0体验" class="article-share-link">分享</a>
       
       
       
@@ -208,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/dewen2018/2022/06/21/hello-world/" data-id="clb8v45vn0003rw7k8n9pftgy" data-title="Hello World" class="article-share-link">分享</a>
+      <a data-url="https://github.com/dewen2018/2022/06/21/hello-world/" data-id="clb8v562b00002g7kfx2e499v" data-title="Hello World" class="article-share-link">分享</a>
       
       
       
@@ -233,7 +188,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/dewen2018/tags/graalvm/" rel="tag">graalvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/dewen2018/tags/lua/" rel="tag">lua</a></li><li class="tag-list-item"><a class="tag-list-link" href="/dewen2018/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/dewen2018/tags/openresty/" rel="tag">openresty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/dewen2018/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/dewen2018/tags/springboot/" rel="tag">springboot</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/dewen2018/tags/graalvm/" rel="tag">graalvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/dewen2018/tags/springboot/" rel="tag">springboot</a></li></ul>
     </div>
   </div>
 
@@ -243,7 +198,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/dewen2018/tags/graalvm/" style="font-size: 10px;">graalvm</a> <a href="/dewen2018/tags/lua/" style="font-size: 10px;">lua</a> <a href="/dewen2018/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/dewen2018/tags/openresty/" style="font-size: 10px;">openresty</a> <a href="/dewen2018/tags/redis/" style="font-size: 10px;">redis</a> <a href="/dewen2018/tags/springboot/" style="font-size: 10px;">springboot</a>
+      <a href="/dewen2018/tags/graalvm/" style="font-size: 10px;">graalvm</a> <a href="/dewen2018/tags/springboot/" style="font-size: 10px;">springboot</a>
     </div>
   </div>
 
@@ -263,10 +218,6 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/dewen2018/2022/12/04/OpenResty-Lua-Redis%E7%BC%93%E5%AD%98%EF%BC%88%E5%BA%95%E5%BA%93MySQL/">OpenResty Lua Redis缓存（底库MySQL)</a>
-          </li>
         
           <li>
             <a href="/dewen2018/2022/12/03/springboot3-0/">springboot3.0体验</a>
