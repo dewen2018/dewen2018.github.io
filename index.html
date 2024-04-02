@@ -6,10 +6,12 @@
   
   <title>Dewen&#39;s Note</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+  <meta name="description" content="21世纪伟大的计算机科学...">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Dewen&#39;s Note">
 <meta property="og:url" content="https://dewen2018.github.io/index.html">
 <meta property="og:site_name" content="Dewen&#39;s Note">
+<meta property="og:description" content="21世纪伟大的计算机科学...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Dewen">
 <meta name="twitter:card" content="summary">
@@ -32,7 +34,7 @@
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
   
-<meta name="generator" content="Hexo 6.2.0"></head>
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 <body>
   <div id="container">
@@ -75,6 +77,98 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-SSH 的端口转发" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/02/SSH%20%E7%9A%84%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/" class="article-date">
+  <time class="dt-published" datetime="2024-04-02T12:06:59.000Z" itemprop="datePublished">2024-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/02/SSH%20%E7%9A%84%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/">SSH 的端口转发</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>生产环境数据库不允许外网直接访问的，需要SSH上数据库服务器再使用mysql命令连接;<br>本地开发遇到了很奇怪的问题，又不想导出生产环境数据库，可以使用此方法：端口转发<br>虽然springboot也有jar包可以实现，还是使用这个方法简单。</p>
+<h2 id="本地端口转发-Local-Port-Forwarding"><a href="#本地端口转发-Local-Port-Forwarding" class="headerlink" title="本地端口转发 (Local Port Forwarding)"></a>本地端口转发 (Local Port Forwarding)</h2><p>场景： 你想要在本地主机上监听一个端口，并将所有连接到这个端口的流量加密后发送到远程主机上的某个服务。<br>ssh -L &lt;本地监听端口&gt;:&lt;远程数据库主机&gt;:&lt;远程数据库端口&gt; 用户名@远程服务器地址<br>例如，假设你想通过远程SSH服务器访问其内网中的数据库服务器（运行在3306端口），并在本地主机上监听3307端口来实现此目的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 3307:dbserver.example.com:3306 user@ssh-gateway.example.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="远程端口转发-Remote-Port-Forwarding"><a href="#远程端口转发-Remote-Port-Forwarding" class="headerlink" title="远程端口转发 (Remote Port Forwarding)"></a>远程端口转发 (Remote Port Forwarding)</h2><p>场景： 在远程服务器上监听一个端口，并将该端口接收到的所有流量转发回本地主机上的指定端口。<br>ssh -R &lt;远程端口&gt;:&lt;本地目标主机&gt;:&lt;本地目标端口&gt; &lt;远程SSH服务器用户名&gt;@&lt;远程SSH服务器地址&gt;<br>例如，如果希望远程服务器上的8080端口流量被转发到本地主机的80端口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -R 8080:localhost:80 user@ssh-server.example.com</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://dewen2018.github.io/2024/04/02/SSH%20%E7%9A%84%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/" data-id="cluidc8h0000369rngfea89op" data-title="SSH 的端口转发" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-npm 换源" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/02/npm%20%E6%8D%A2%E6%BA%90/" class="article-date">
+  <time class="dt-published" datetime="2024-04-02T12:02:49.000Z" itemprop="datePublished">2024-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/02/npm%20%E6%8D%A2%E6%BA%90/">npm 换源</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>使用以下命令来将 npm 的源切换到阿里源：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+<p>换回官方源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmjs.org</span><br></pre></td></tr></table></figure>
+<p>查看是哪个源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config get registry</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://dewen2018.github.io/2024/04/02/npm%20%E6%8D%A2%E6%BA%90/" data-id="cluidc8h1000469rn9utk499b" data-title="npm 换源" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/" rel="tag">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-OpenResty-Lua-Redis缓存（底库MySQL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/12/04/OpenResty-Lua-Redis%E7%BC%93%E5%AD%98%EF%BC%88%E5%BA%95%E5%BA%93MySQL/" class="article-date">
@@ -106,7 +200,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://dewen2018.github.io/2022/12/04/OpenResty-Lua-Redis%E7%BC%93%E5%AD%98%EF%BC%88%E5%BA%95%E5%BA%93MySQL/" data-id="clb8vdd8x0000io7k4nk1gef7" data-title="OpenResty Lua Redis缓存（底库MySQL)" class="article-share-link">分享</a>
+      <a data-url="https://dewen2018.github.io/2022/12/04/OpenResty-Lua-Redis%E7%BC%93%E5%AD%98%EF%BC%88%E5%BA%95%E5%BA%93MySQL/" data-id="cluidc8gx000069rn2ij0hmpy" data-title="OpenResty Lua Redis缓存（底库MySQL)" class="article-share-link">分享</a>
       
       
       
@@ -155,7 +249,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://dewen2018.github.io/2022/12/03/springboot3-0/" data-id="clb8v562u00012g7k4coa35c7" data-title="springboot3.0体验" class="article-share-link">分享</a>
+      <a data-url="https://dewen2018.github.io/2022/12/03/springboot3-0/" data-id="cluidc8h1000569rn1ecgc1nd" data-title="springboot3.0体验" class="article-share-link">分享</a>
       
       
       
@@ -171,8 +265,8 @@
   
     <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/06/21/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2022-06-21T14:06:39.093Z" itemprop="datePublished">2022-06-21</time>
+    <a href="/2022/12/01/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2022-12-01T12:02:49.000Z" itemprop="datePublished">2022-12-01</time>
 </a>
     
   </div>
@@ -183,7 +277,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/21/hello-world/">Hello World</a>
+      <a class="p-name article-title" href="/2022/12/01/hello-world/">Hello World</a>
     </h1>
   
 
@@ -192,7 +286,9 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">or </span><br><span class="line">$ hexo n <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">or </span><br><span class="line">$ hexo n <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
@@ -205,10 +301,11 @@
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 <h3 id="清理已生成的静态页面"><a href="#清理已生成的静态页面" class="headerlink" title="清理已生成的静态页面"></a>清理已生成的静态页面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://dewen2018.github.io/2022/06/21/hello-world/" data-id="clb8v562b00002g7kfx2e499v" data-title="Hello World" class="article-share-link">分享</a>
+      <a data-url="https://dewen2018.github.io/2022/12/01/hello-world/" data-id="cluidc8gz000169rn001i61oq" data-title="Hello World" class="article-share-link">分享</a>
       
       
       
@@ -233,7 +330,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/graalvm/" rel="tag">graalvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/" rel="tag">lua</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/graalvm/" rel="tag">graalvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/" rel="tag">lua</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li></ul>
     </div>
   </div>
 
@@ -243,7 +340,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/graalvm/" style="font-size: 10px;">graalvm</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/openresty/" style="font-size: 10px;">openresty</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a>
+      <a href="/tags/graalvm/" style="font-size: 10px;">graalvm</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/openresty/" style="font-size: 10px;">openresty</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a>
     </div>
   </div>
 
@@ -252,7 +349,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li></ul>
     </div>
   </div>
 
@@ -265,6 +362,14 @@
       <ul>
         
           <li>
+            <a href="/2024/04/02/SSH%20%E7%9A%84%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/">SSH 的端口转发</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/02/npm%20%E6%8D%A2%E6%BA%90/">npm 换源</a>
+          </li>
+        
+          <li>
             <a href="/2022/12/04/OpenResty-Lua-Redis%E7%BC%93%E5%AD%98%EF%BC%88%E5%BA%95%E5%BA%93MySQL/">OpenResty Lua Redis缓存（底库MySQL)</a>
           </li>
         
@@ -273,7 +378,7 @@
           </li>
         
           <li>
-            <a href="/2022/06/21/hello-world/">Hello World</a>
+            <a href="/2022/12/01/hello-world/">Hello World</a>
           </li>
         
       </ul>
@@ -289,7 +394,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2022 Dewen<br>
+      &copy; 2024 Dewen<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

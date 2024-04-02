@@ -4,16 +4,20 @@
   <meta charset="utf-8">
   
   
-  <title>标签: nginx | Dewen&#39;s Note</title>
+  <title>SSH 的端口转发 | Dewen&#39;s Note</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="21世纪伟大的计算机科学...">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Dewen&#39;s Note">
-<meta property="og:url" content="https://dewen2018.github.io/tags/nginx/index.html">
+  <meta name="description" content="生产环境数据库不允许外网直接访问的，需要SSH上数据库服务器再使用mysql命令连接;本地开发遇到了很奇怪的问题，又不想导出生产环境数据库，可以使用此方法：端口转发虽然springboot也有jar包可以实现，还是使用这个方法简单。 本地端口转发 (Local Port Forwarding)场景： 你想要在本地主机上监听一个端口，并将所有连接到这个端口的流量加密后发送到远程主机上的某个服务。ss">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSH 的端口转发">
+<meta property="og:url" content="https://dewen2018.github.io/2024/04/02/SSH%20%E7%9A%84%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/index.html">
 <meta property="og:site_name" content="Dewen&#39;s Note">
-<meta property="og:description" content="21世纪伟大的计算机科学...">
+<meta property="og:description" content="生产环境数据库不允许外网直接访问的，需要SSH上数据库服务器再使用mysql命令连接;本地开发遇到了很奇怪的问题，又不想导出生产环境数据库，可以使用此方法：端口转发虽然springboot也有jar包可以实现，还是使用这个方法简单。 本地端口转发 (Local Port Forwarding)场景： 你想要在本地主机上监听一个端口，并将所有连接到这个端口的流量加密后发送到远程主机上的某个服务。ss">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-02T12:06:59.000Z">
+<meta property="article:modified_time" content="2024-04-02T12:13:50.071Z">
 <meta property="article:author" content="Dewen">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="ssh">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Dewen's Note" type="application/atom+xml">
@@ -75,39 +79,60 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/12/04/OpenResty-Lua-Redis%E7%BC%93%E5%AD%98%EF%BC%88%E5%BA%95%E5%BA%93MySQL/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-12-03T17:43:46.000Z" itemprop="datePublished">12月 4</time>
+        <section id="main"><article id="post-SSH 的端口转发" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/02/SSH%20%E7%9A%84%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/" class="article-date">
+  <time class="dt-published" datetime="2024-04-02T12:06:59.000Z" itemprop="datePublished">2024-04-02</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/12/04/OpenResty-Lua-Redis%E7%BC%93%E5%AD%98%EF%BC%88%E5%BA%95%E5%BA%93MySQL/">OpenResty Lua Redis缓存（底库MySQL)</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      SSH 的端口转发
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>生产环境数据库不允许外网直接访问的，需要SSH上数据库服务器再使用mysql命令连接;<br>本地开发遇到了很奇怪的问题，又不想导出生产环境数据库，可以使用此方法：端口转发<br>虽然springboot也有jar包可以实现，还是使用这个方法简单。</p>
+<h2 id="本地端口转发-Local-Port-Forwarding"><a href="#本地端口转发-Local-Port-Forwarding" class="headerlink" title="本地端口转发 (Local Port Forwarding)"></a>本地端口转发 (Local Port Forwarding)</h2><p>场景： 你想要在本地主机上监听一个端口，并将所有连接到这个端口的流量加密后发送到远程主机上的某个服务。<br>ssh -L &lt;本地监听端口&gt;:&lt;远程数据库主机&gt;:&lt;远程数据库端口&gt; 用户名@远程服务器地址<br>例如，假设你想通过远程SSH服务器访问其内网中的数据库服务器（运行在3306端口），并在本地主机上监听3307端口来实现此目的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 3307:dbserver.example.com:3306 user@ssh-gateway.example.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="远程端口转发-Remote-Port-Forwarding"><a href="#远程端口转发-Remote-Port-Forwarding" class="headerlink" title="远程端口转发 (Remote Port Forwarding)"></a>远程端口转发 (Remote Port Forwarding)</h2><p>场景： 在远程服务器上监听一个端口，并将该端口接收到的所有流量转发回本地主机上的指定端口。<br>ssh -R &lt;远程端口&gt;:&lt;本地目标主机&gt;:&lt;本地目标端口&gt; &lt;远程SSH服务器用户名&gt;@&lt;远程SSH服务器地址&gt;<br>例如，如果希望远程服务器上的8080端口流量被转发到本地主机的80端口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -R 8080:localhost:80 user@ssh-server.example.com</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://dewen2018.github.io/2024/04/02/SSH%20%E7%9A%84%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/" data-id="cluidc8h0000369rngfea89op" data-title="SSH 的端口转发" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/04/02/npm%20%E6%8D%A2%E6%BA%90/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">npm 换源</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
